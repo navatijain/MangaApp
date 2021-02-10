@@ -3,15 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		93CC2B2725D45CB0004D3BBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2625D45CB0004D3BBD /* AppDelegate.swift */; };
 		93CC2B2925D45CB0004D3BBD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2825D45CB0004D3BBD /* SceneDelegate.swift */; };
-		93CC2B2B25D45CB0004D3BBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2A25D45CB0004D3BBD /* ViewController.swift */; };
+		93CC2B2B25D45CB0004D3BBD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2A25D45CB0004D3BBD /* HomeViewController.swift */; };
 		93CC2B3025D45CB2004D3BBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CC2B2F25D45CB2004D3BBD /* Assets.xcassets */; };
 		93CC2B3325D45CB2004D3BBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CC2B3125D45CB2004D3BBD /* LaunchScreen.storyboard */; };
+		93CC2B4625D461CE004D3BBD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B4525D461CE004D3BBD /* Service.swift */; };
+		93CC2B4925D46231004D3BBD /* CharacterResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B4825D46231004D3BBD /* CharacterResponseModel.swift */; };
+		93CC2B5625D46635004D3BBD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B5525D46635004D3BBD /* HomeViewModel.swift */; };
 		BD730502601ED564E171F0C4 /* Pods_MangaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240D65E7EA5FB456317FEBF7 /* Pods_MangaApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,10 +25,13 @@
 		93CC2B2325D45CB0004D3BBD /* MangaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CC2B2625D45CB0004D3BBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93CC2B2825D45CB0004D3BBD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		93CC2B2A25D45CB0004D3BBD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		93CC2B2A25D45CB0004D3BBD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		93CC2B2F25D45CB2004D3BBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93CC2B3225D45CB2004D3BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93CC2B3425D45CB2004D3BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93CC2B4525D461CE004D3BBD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		93CC2B4825D46231004D3BBD /* CharacterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponseModel.swift; sourceTree = "<group>"; };
+		93CC2B5525D46635004D3BBD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +82,6 @@
 				93CC2B3D25D45ECD004D3BBD /* Views */,
 				93CC2B2625D45CB0004D3BBD /* AppDelegate.swift */,
 				93CC2B2825D45CB0004D3BBD /* SceneDelegate.swift */,
-				93CC2B2A25D45CB0004D3BBD /* ViewController.swift */,
 				93CC2B2F25D45CB2004D3BBD /* Assets.xcassets */,
 				93CC2B3125D45CB2004D3BBD /* LaunchScreen.storyboard */,
 				93CC2B3425D45CB2004D3BBD /* Info.plist */,
@@ -94,6 +99,7 @@
 		93CC2B3F25D45EE1004D3BBD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				93CC2B2A25D45CB0004D3BBD /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -101,6 +107,7 @@
 		93CC2B4125D45EF7004D3BBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				93CC2B4825D46231004D3BBD /* CharacterResponseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +115,7 @@
 		93CC2B4225D45F06004D3BBD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				93CC2B5525D46635004D3BBD /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -115,6 +123,7 @@
 		93CC2B4325D45F2B004D3BBD /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				93CC2B4525D461CE004D3BBD /* Service.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -125,7 +134,6 @@
 				278E531F5DB31D87AA393C52 /* Pods-MangaApp.debug.xcconfig */,
 				22A8A229E9B2093E3DDBFF87 /* Pods-MangaApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -242,7 +250,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93CC2B2B25D45CB0004D3BBD /* ViewController.swift in Sources */,
+				93CC2B2B25D45CB0004D3BBD /* HomeViewController.swift in Sources */,
+				93CC2B5625D46635004D3BBD /* HomeViewModel.swift in Sources */,
+				93CC2B4625D461CE004D3BBD /* Service.swift in Sources */,
+				93CC2B4925D46231004D3BBD /* CharacterResponseModel.swift in Sources */,
 				93CC2B2725D45CB0004D3BBD /* AppDelegate.swift in Sources */,
 				93CC2B2925D45CB0004D3BBD /* SceneDelegate.swift in Sources */,
 			);

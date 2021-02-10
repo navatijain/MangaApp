@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+struct CharacterResponseModel: Codable {
+    let requestHash: String
+    let requestCached: Bool
+    let requestCacheExpiry: Int
+    let characters: [Characters]
+}
+
+struct Characters: Codable {
+    let malId: Int
+    let url: String
+    let imageUrl: String
+    let name: String
+    let role: String
+}
+
