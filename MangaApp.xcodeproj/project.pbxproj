@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		939C9BDA25D49688007707DF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C9BD925D49688007707DF /* UIView+Extension.swift */; };
 		93CC2B2725D45CB0004D3BBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2625D45CB0004D3BBD /* AppDelegate.swift */; };
 		93CC2B2925D45CB0004D3BBD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2825D45CB0004D3BBD /* SceneDelegate.swift */; };
 		93CC2B2B25D45CB0004D3BBD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2A25D45CB0004D3BBD /* HomeViewController.swift */; };
@@ -15,6 +16,7 @@
 		93CC2B4625D461CE004D3BBD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B4525D461CE004D3BBD /* Service.swift */; };
 		93CC2B4925D46231004D3BBD /* CharacterResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B4825D46231004D3BBD /* CharacterResponseModel.swift */; };
 		93CC2B5625D46635004D3BBD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B5525D46635004D3BBD /* HomeViewModel.swift */; };
+		93CC2B5A25D4854D004D3BBD /* CharacterCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B5925D4854D004D3BBD /* CharacterCellTableViewCell.swift */; };
 		BD730502601ED564E171F0C4 /* Pods_MangaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240D65E7EA5FB456317FEBF7 /* Pods_MangaApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +24,7 @@
 		22A8A229E9B2093E3DDBFF87 /* Pods-MangaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaApp.release.xcconfig"; path = "Target Support Files/Pods-MangaApp/Pods-MangaApp.release.xcconfig"; sourceTree = "<group>"; };
 		240D65E7EA5FB456317FEBF7 /* Pods_MangaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		278E531F5DB31D87AA393C52 /* Pods-MangaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaApp.debug.xcconfig"; path = "Target Support Files/Pods-MangaApp/Pods-MangaApp.debug.xcconfig"; sourceTree = "<group>"; };
+		939C9BD925D49688007707DF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		93CC2B2325D45CB0004D3BBD /* MangaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CC2B2625D45CB0004D3BBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93CC2B2825D45CB0004D3BBD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +35,7 @@
 		93CC2B4525D461CE004D3BBD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		93CC2B4825D46231004D3BBD /* CharacterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponseModel.swift; sourceTree = "<group>"; };
 		93CC2B5525D46635004D3BBD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		93CC2B5925D4854D004D3BBD /* CharacterCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,14 @@
 				240D65E7EA5FB456317FEBF7 /* Pods_MangaApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		939C9BD825D49668007707DF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				939C9BD925D49688007707DF /* UIView+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		93CC2B1A25D45CB0004D3BBD = {
@@ -75,6 +87,7 @@
 		93CC2B2525D45CB0004D3BBD /* MangaApp */ = {
 			isa = PBXGroup;
 			children = (
+				939C9BD825D49668007707DF /* Extensions */,
 				93CC2B4325D45F2B004D3BBD /* Network */,
 				93CC2B4225D45F06004D3BBD /* ViewModel */,
 				93CC2B4125D45EF7004D3BBD /* Model */,
@@ -92,6 +105,7 @@
 		93CC2B3D25D45ECD004D3BBD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				93CC2B5925D4854D004D3BBD /* CharacterCellTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,10 +266,12 @@
 			files = (
 				93CC2B2B25D45CB0004D3BBD /* HomeViewController.swift in Sources */,
 				93CC2B5625D46635004D3BBD /* HomeViewModel.swift in Sources */,
+				939C9BDA25D49688007707DF /* UIView+Extension.swift in Sources */,
 				93CC2B4625D461CE004D3BBD /* Service.swift in Sources */,
 				93CC2B4925D46231004D3BBD /* CharacterResponseModel.swift in Sources */,
 				93CC2B2725D45CB0004D3BBD /* AppDelegate.swift in Sources */,
 				93CC2B2925D45CB0004D3BBD /* SceneDelegate.swift in Sources */,
+				93CC2B5A25D4854D004D3BBD /* CharacterCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

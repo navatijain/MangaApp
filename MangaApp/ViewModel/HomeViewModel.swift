@@ -15,24 +15,31 @@ class HomeViewModel {
         case notLoaded
         case error
     }
-    
+    //MARK: Private variables
    private var state: State = .notLoaded {
         didSet {
             stateChangeHandler?(state)
         }
     }
     
+    //MARK: Public Variables
     var stateChangeHandler: ((State) -> ())?
+    var characters: [Characters] = []
     
     func getMangaCharacters(){
-        Service.getCharacters { (result) in
+        state = .loading
+        Service.getCharacters { [weak self] (result) in
             switch (result) {
             case .success(let model):
+                self?.characters.append(contentsOf: model.characters)
                 model.characters.forEach { (character) in
                     print(character.name)
+                 
                 }
+                self?.state = .loaded
             case .failure(let error):
                 print(error)
+                self?.state = .error
             }
         }
     }
