@@ -18,11 +18,10 @@ extension UIImageView {
                 case .success(let image):
                     self.image = image
                 case .failure(_):
+                    //TO DO: Placeholder
                     return
-                    
                 }
             }
-            
         }
     }
 }

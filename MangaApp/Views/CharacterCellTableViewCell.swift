@@ -13,13 +13,14 @@ class CharacterTableViewCell: UITableViewCell {
         didSet {
             nameLabel.text = character?.name
             descriptionLabel.text = character?.role
+            characterImageView.setImage(from: character?.imageUrl)
         }
     }
     
     //MARK: UI Elements
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .purple
         return label
     }()
@@ -28,25 +29,35 @@ class CharacterTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .purple
-        label.numberOfLines = 0
         return label
     }()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nameLabel,descriptionLabel])
-        stackView.spacing = 10
+        stackView.spacing = 20
         stackView.axis = .vertical
         stackView.distribution = .fill
         return stackView
     }()
     
+    private lazy var characterImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     func setConstraints(){
-        contentView.addSubviewWithAutoLayout(view: stackView)
+        contentView.addSubviewWithAutoLayout(views: [characterImageView, stackView])
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100)
+            characterImageView.heightAnchor.constraint(equalTo: characterImageView.widthAnchor, multiplier: 1.5),
+            characterImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/3),
+            characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            characterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
+            stackView.topAnchor.constraint(equalTo: characterImageView.topAnchor, constant: 10),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10),
         ])
     }
     

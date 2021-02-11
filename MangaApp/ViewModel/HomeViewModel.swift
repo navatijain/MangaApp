@@ -29,17 +29,19 @@ class HomeViewModel {
     func getMangaCharacters(){
         state = .loading
         Service.getCharacters { [weak self] (result) in
-            switch (result) {
-            case .success(let model):
-                self?.characters.append(contentsOf: model.characters)
-                model.characters.forEach { (character) in
-                    print(character.name)
-                 
+            DispatchQueue.main.async {
+                switch (result) {
+                case .success(let model):
+                    self?.characters.append(contentsOf: model.characters)
+                    model.characters.forEach { (character) in
+                        print(character.name)
+                     
+                    }
+                    self?.state = .loaded
+                case .failure(let error):
+                    print(error)
+                    self?.state = .error
                 }
-                self?.state = .loaded
-            case .failure(let error):
-                print(error)
-                self?.state = .error
             }
         }
     }

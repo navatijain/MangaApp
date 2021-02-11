@@ -7,12 +7,13 @@
 
 import Foundation
 import Alamofire
-
+import AlamofireImage
 
 enum CustomError: Error {
     case decoding
     case service
 }
+
 class Service {
     
     struct Constants {
@@ -20,7 +21,6 @@ class Service {
     }
     
     static func getCharacters(handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
-
         AF.request(Constants.baseURL,
                    method: .get)
             .responseData { (response) in
@@ -33,13 +33,21 @@ class Service {
                     } else {
                         handler(.failure(.decoding))
                     }
-                 
                 case .failure(_):
                     handler(.failure(.service))
                 }
             }
-        
-        
+    }
+    
+    static func getImage(url: String, handler: @escaping (Result<Image,CustomError>) -> () ) {
+        AF.request(url).responseImage { (response) in
+            switch(response.result) {
+            case .success(let image) :
+                handler(.success(image))
+            case .failure(let error):
+                handler(.failure(.service))
+            }
+        }
     }
     
 }
