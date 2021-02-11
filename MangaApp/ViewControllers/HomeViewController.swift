@@ -33,13 +33,14 @@ class HomeViewController: BaseViewController {
         viewModel.stateChangeHandler = {[weak self] state in
             switch(state) {
             case .loaded:
+                LoadingIndicator.hide()
                 self?.setConstraints()
             case .loading:
-                print("loading")
+                LoadingIndicator.show()
             case .notLoaded:
                 print("notLoaded")
             case .error:
-                print("error")
+                LoadingIndicator.hide()
             }
         }
     }
@@ -60,7 +61,6 @@ class HomeViewController: BaseViewController {
         setViewModelHandler()
         viewModel.getMangaCharacters()
         title = Constants.title
-        titlet
     }
 }
 

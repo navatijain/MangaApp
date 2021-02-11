@@ -53,11 +53,11 @@ class CharacterTableViewCell: UITableViewCell {
             characterImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/3),
             characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            characterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            characterImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
             stackView.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
             stackView.topAnchor.constraint(equalTo: characterImageView.topAnchor, constant: 10),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
         ])
     }
     
