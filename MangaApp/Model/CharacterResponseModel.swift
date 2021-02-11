@@ -8,9 +8,9 @@
 import Foundation
 
 struct CharacterResponseModel: Codable {
-    let requestHash: String
-    let requestCached: Bool
-    let requestCacheExpiry: Int
+//    let requestHash: String
+//    let requestCached: Bool
+//    let requestCacheExpiry: Int
     let characters: [Characters]
 }
 

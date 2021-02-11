@@ -11,33 +11,34 @@ class HomeViewModel {
     
     enum State {
         case loaded
+        case loadedMore
         case loading
         case notLoaded
         case error
     }
+    
     //MARK: Private variables
-   private var state: State = .notLoaded {
+    private var state: State = .notLoaded {
         didSet {
             stateChangeHandler?(state)
         }
     }
+    
+    var currentPage = 0
     
     //MARK: Public Variables
     var stateChangeHandler: ((State) -> ())?
     var characters: [Characters] = []
     
     func getMangaCharacters(){
+        currentPage += 1
         state = .loading
-        Service.getCharacters { [weak self] (result) in
+        Service.getCharacters(page: currentPage) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch (result) {
                 case .success(let model):
                     self?.characters.append(contentsOf: model.characters)
-                    model.characters.forEach { (character) in
-                        print(character.name)
-                     
-                    }
-                    self?.state = .loaded
+                    self?.state = self?.currentPage == 1 ? .loaded : .loadedMore
                 case .failure(let error):
                     print(error)
                     self?.state = .error

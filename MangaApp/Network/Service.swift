@@ -17,11 +17,20 @@ enum CustomError: Error {
 class Service {
     
     struct Constants {
-        static let baseURL = "https://api.jikan.moe/v3/manga/1/characters"
+      //  static let baseURL = "https://api.jikan.moe/v3/manga/1/characters"
+        static let baseURL = "https://api.jikan.moe/v3/manga/"
+        static let characters = "/characters"
     }
     
-    static func getCharacters(handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
-        AF.request(Constants.baseURL,
+   private static var currentURL: String {
+    return "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
+    }
+    
+    private static var currentPage: Int = 1
+    
+    static func getCharacters(page:Int, handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
+        currentPage = page
+        AF.request(currentURL,
                    method: .get)
             .responseData { (response) in
                 switch (response.result) {

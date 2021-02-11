@@ -42,7 +42,7 @@ class CharacterTableViewCell: UITableViewCell {
     
     private lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     

@@ -17,8 +17,7 @@ class HomeViewController: BaseViewController {
     //MARK: UI
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
+
         tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: Constants.cellName)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
@@ -34,13 +33,19 @@ class HomeViewController: BaseViewController {
             switch(state) {
             case .loaded:
                 LoadingIndicator.hide()
+                self?.tableView.delegate = self
+                self?.tableView.dataSource = self
                 self?.setConstraints()
             case .loading:
                 LoadingIndicator.show()
             case .notLoaded:
-                print("notLoaded")
+                LoadingIndicator.hide()
             case .error:
                 LoadingIndicator.hide()
+            case .loadedMore:
+                LoadingIndicator.hide()
+                self?.tableView.reloadData()
+           
             }
         }
     }
@@ -71,7 +76,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.character = viewModel.characters[indexPath.row]
             return cell
         }
-        return UITableViewCell() //why
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,3 +84,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
 }
+
+//MARK: UIScrollViewDelegate
+
+extension HomeViewController: UIScrollViewDelegate {
+    //https://www.tfzx.net/article/347570.html
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        if maximumOffset - currentOffset <= 10.0 {
+            viewModel.getMangaCharacters()
+        }
+    }
+}
+
