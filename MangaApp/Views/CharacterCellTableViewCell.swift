@@ -66,6 +66,7 @@ class CharacterTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         setConstraints()
+        backgroundColor = Colors.background
     }
     
     required init?(coder: NSCoder) {

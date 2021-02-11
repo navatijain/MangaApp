@@ -7,10 +7,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     
     private struct Constants {
         static let cellName = "CharacterTableViewCell"
+        static let title = "Manga Characters"
     }
     
     //MARK: UI
@@ -21,9 +22,9 @@ class HomeViewController: UIViewController {
         tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: Constants.cellName)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
+      //  tableView.backgroundColor = Colors.background
         return tableView
     }()
-    
     
     private let viewModel = HomeViewModel()
     
@@ -53,17 +54,16 @@ class HomeViewController: UIViewController {
         ])
     }
     //MARK: View Methods
-    
-    
-    
+     
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewModelHandler()
         viewModel.getMangaCharacters()
+        title = Constants.title
+        titlet
     }
-    
-    
 }
+
 //MARK: TableView Delegate
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,7 +77,5 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.characters.count
     }
-    
-    
-}
 
+}

@@ -17,7 +17,7 @@ enum CustomError: Error {
 class Service {
     
     struct Constants {
-        static let baseURL = "https://api.jikan.moe/v3/manga/2/characters"
+        static let baseURL = "https://api.jikan.moe/v3/manga/1/characters"
     }
     
     static func getCharacters(handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
