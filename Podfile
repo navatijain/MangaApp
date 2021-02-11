@@ -7,5 +7,6 @@ target 'MangaApp' do
 
   # Pods for MangaApp
 pod "Alamofire"
+pod "AlamofireImage"
 
 end
