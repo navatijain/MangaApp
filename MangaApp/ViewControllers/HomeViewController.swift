@@ -12,17 +12,32 @@ class HomeViewController: BaseViewController {
     private struct Constants {
         static let cellName = "CharacterTableViewCell"
         static let title = "Manga Characters"
+        static let genericError = "Something went wrong! Sorry!"
     }
     
     //MARK: UI
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-
         tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: Constants.cellName)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
-      //  tableView.backgroundColor = Colors.background
         return tableView
+    }()
+    
+    lazy var errorScreen: UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = Colors.background
+        let label = UILabel()
+        label.textColor = Colors.theme
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.text = Constants.genericError
+        contentView.addSubviewWithAutoLayout(view: label)
+        NSLayoutConstraint.activate(
+            [label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+           label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)])
+        return contentView
+        
     }()
     
     private let viewModel = HomeViewModel()
@@ -35,32 +50,31 @@ class HomeViewController: BaseViewController {
                 LoadingIndicator.hide()
                 self?.tableView.delegate = self
                 self?.tableView.dataSource = self
-                self?.setConstraints()
+                self?.setTableViewConstraints()
             case .loading:
                 LoadingIndicator.show()
             case .notLoaded:
                 LoadingIndicator.hide()
             case .error:
                 LoadingIndicator.hide()
+                self?.setErrorViewConstraints()
             case .loadedMore:
                 LoadingIndicator.hide()
                 self?.tableView.reloadData()
-           
+                
             }
         }
     }
-    
-    private func setConstraints() {
-        view.addSubviewWithAutoLayout(view: tableView)
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+    private func setTableViewConstraints() {
+        tableView.anchor(to: view)
     }
+    
+    private func setErrorViewConstraints() {
+        errorScreen.anchor(to: self.view)
+    }
+    
     //MARK: View Methods
-     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewModelHandler()
@@ -82,7 +96,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.characters.count
     }
-
+    
 }
 
 //MARK: UIScrollViewDelegate

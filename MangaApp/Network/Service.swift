@@ -17,13 +17,13 @@ enum CustomError: Error {
 class Service {
     
     struct Constants {
-      //  static let baseURL = "https://api.jikan.moe/v3/manga/1/characters"
         static let baseURL = "https://api.jikan.moe/v3/manga/"
         static let characters = "/characters"
     }
     
-   private static var currentURL: String {
-    return "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
+    private static var currentURL: String {
+    //   return "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
+    return "badURL"
     }
     
     private static var currentPage: Int = 1

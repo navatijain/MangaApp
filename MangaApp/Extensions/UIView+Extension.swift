@@ -22,6 +22,15 @@ extension UIView {
         views.forEach { (view) in
             self.addSubview(view.enableAutoLayout())
         }
-        
+    }
+    
+    func anchor(to view: UIView){
+        view.addSubviewWithAutoLayout(view: self)
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: view.topAnchor),
+            self.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            self.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
     }
 }
