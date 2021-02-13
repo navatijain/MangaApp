@@ -14,6 +14,8 @@
 		939C9BF225D5BBB6007707DF /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C9BF125D5BBB6007707DF /* LoadingIndicator.swift */; };
 		939C9BF525D7A963007707DF /* CharacterWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C9BF425D7A963007707DF /* CharacterWebViewController.swift */; };
 		939C9BF825D7BEDF007707DF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C9BF725D7BEDF007707DF /* CustomButton.swift */; };
+		939C9C0525D87664007707DF /* MangaAppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C9C0425D87664007707DF /* MangaAppViewModelTests.swift */; };
+		939C9C1125D889DE007707DF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C9C1025D889DD007707DF /* String+Extension.swift */; };
 		93CC2B2725D45CB0004D3BBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2625D45CB0004D3BBD /* AppDelegate.swift */; };
 		93CC2B2925D45CB0004D3BBD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2825D45CB0004D3BBD /* SceneDelegate.swift */; };
 		93CC2B2B25D45CB0004D3BBD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC2B2A25D45CB0004D3BBD /* HomeViewController.swift */; };
@@ -26,6 +28,16 @@
 		BD730502601ED564E171F0C4 /* Pods_MangaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240D65E7EA5FB456317FEBF7 /* Pods_MangaApp.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		939C9C0725D87664007707DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93CC2B1B25D45CB0004D3BBD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 93CC2B2225D45CB0004D3BBD;
+			remoteInfo = MangaApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		22A8A229E9B2093E3DDBFF87 /* Pods-MangaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangaApp.release.xcconfig"; path = "Target Support Files/Pods-MangaApp/Pods-MangaApp.release.xcconfig"; sourceTree = "<group>"; };
 		240D65E7EA5FB456317FEBF7 /* Pods_MangaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +49,10 @@
 		939C9BF125D5BBB6007707DF /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		939C9BF425D7A963007707DF /* CharacterWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterWebViewController.swift; sourceTree = "<group>"; };
 		939C9BF725D7BEDF007707DF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		939C9C0225D87664007707DF /* MangaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MangaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		939C9C0425D87664007707DF /* MangaAppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaAppViewModelTests.swift; sourceTree = "<group>"; };
+		939C9C0625D87664007707DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		939C9C1025D889DD007707DF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		93CC2B2325D45CB0004D3BBD /* MangaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CC2B2625D45CB0004D3BBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93CC2B2825D45CB0004D3BBD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +67,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		939C9BFF25D87664007707DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93CC2B2025D45CB0004D3BBD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,6 +98,7 @@
 			children = (
 				939C9BD925D49688007707DF /* UIView+Extension.swift */,
 				939C9BE425D4A172007707DF /* ImageView+Extension.swift */,
+				939C9C1025D889DD007707DF /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -87,10 +111,20 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		939C9C0325D87664007707DF /* MangaAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				939C9C0425D87664007707DF /* MangaAppViewModelTests.swift */,
+				939C9C0625D87664007707DF /* Info.plist */,
+			);
+			path = MangaAppTests;
+			sourceTree = "<group>";
+		};
 		93CC2B1A25D45CB0004D3BBD = {
 			isa = PBXGroup;
 			children = (
 				93CC2B2525D45CB0004D3BBD /* MangaApp */,
+				939C9C0325D87664007707DF /* MangaAppTests */,
 				93CC2B2425D45CB0004D3BBD /* Products */,
 				DD851E50A16BD33863038787 /* Pods */,
 				0C9881E9418ACE867F0A9703 /* Frameworks */,
@@ -101,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				93CC2B2325D45CB0004D3BBD /* MangaApp.app */,
+				939C9C0225D87664007707DF /* MangaAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,6 +215,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		939C9C0125D87664007707DF /* MangaAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 939C9C0925D87664007707DF /* Build configuration list for PBXNativeTarget "MangaAppTests" */;
+			buildPhases = (
+				939C9BFE25D87664007707DF /* Sources */,
+				939C9BFF25D87664007707DF /* Frameworks */,
+				939C9C0025D87664007707DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				939C9C0825D87664007707DF /* PBXTargetDependency */,
+			);
+			name = MangaAppTests;
+			productName = MangaAppTests;
+			productReference = 939C9C0225D87664007707DF /* MangaAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		93CC2B2225D45CB0004D3BBD /* MangaApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93CC2B3725D45CB2004D3BBD /* Build configuration list for PBXNativeTarget "MangaApp" */;
@@ -208,6 +261,10 @@
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					939C9C0125D87664007707DF = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 93CC2B2225D45CB0004D3BBD;
+					};
 					93CC2B2225D45CB0004D3BBD = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -227,11 +284,19 @@
 			projectRoot = "";
 			targets = (
 				93CC2B2225D45CB0004D3BBD /* MangaApp */,
+				939C9C0125D87664007707DF /* MangaAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		939C9C0025D87664007707DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93CC2B2125D45CB0004D3BBD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -286,6 +351,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		939C9BFE25D87664007707DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				939C9C0525D87664007707DF /* MangaAppViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93CC2B1F25D45CB0004D3BBD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,11 +376,20 @@
 				93CC2B4925D46231004D3BBD /* CharacterResponseModel.swift in Sources */,
 				93CC2B2725D45CB0004D3BBD /* AppDelegate.swift in Sources */,
 				93CC2B2925D45CB0004D3BBD /* SceneDelegate.swift in Sources */,
+				939C9C1125D889DE007707DF /* String+Extension.swift in Sources */,
 				93CC2B5A25D4854D004D3BBD /* CharacterCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		939C9C0825D87664007707DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 93CC2B2225D45CB0004D3BBD /* MangaApp */;
+			targetProxy = 939C9C0725D87664007707DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		93CC2B3125D45CB2004D3BBD /* LaunchScreen.storyboard */ = {
@@ -321,6 +403,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		939C9C0A25D87664007707DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DM6YKWKWAC;
+				INFOPLIST_FILE = MangaAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.navjaybar.MangaAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MangaApp.app/MangaApp";
+			};
+			name = Debug;
+		};
+		939C9C0B25D87664007707DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DM6YKWKWAC;
+				INFOPLIST_FILE = MangaAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.navjaybar.MangaAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MangaApp.app/MangaApp";
+			};
+			name = Release;
+		};
 		93CC2B3525D45CB2004D3BBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -480,6 +602,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		939C9C0925D87664007707DF /* Build configuration list for PBXNativeTarget "MangaAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				939C9C0A25D87664007707DF /* Debug */,
+				939C9C0B25D87664007707DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		93CC2B1E25D45CB0004D3BBD /* Build configuration list for PBXProject "MangaApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

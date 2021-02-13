@@ -6,3 +6,15 @@
 //
 
 import Foundation
+import UIKit
+
+extension String {
+    var italicize: NSMutableAttributedString  {
+        return NSMutableAttributedString(
+            string: self,
+            attributes: [
+                .font: UIFont.italicSystemFont(ofSize: 12)
+            ]
+        )
+    }
+}

@@ -24,7 +24,12 @@ class HomeViewModel {
         }
     }
     
-    var currentPage = 0
+    private var currentPage = 0
+    private let service: Service
+    
+    init(service: Service = Service()) {
+        self.service = service
+    }
     
     //MARK: Public Variables
     var stateChangeHandler: ((State) -> ())?
@@ -33,7 +38,7 @@ class HomeViewModel {
     func getMangaCharacters(){
         currentPage += 1
         state = .loading
-        Service.getCharacters(page: currentPage) { [weak self] (result) in
+        service.getCharacters(page: currentPage) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch (result) {
                 case .success(let model):

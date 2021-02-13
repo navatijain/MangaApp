@@ -13,28 +13,18 @@ class CharacterTableViewCell: UITableViewCell {
         static let buttonText = "View website"
     }
     
-    func italicize(_ s : String) -> NSMutableAttributedString  {
-        return NSMutableAttributedString(
-            string: s,
-            attributes: [
-                .font: UIFont.italicSystemFont(ofSize: 12)
-            ]
-        )
-    }
-    
-    private var roleString: NSAttributedString = {
-        let role = NSMutableAttributedString(string: "role", attributes: [
-            .font : UIFont.systemFont(ofSize: 11)
+    private var roleString: NSAttributedString {
+        return NSAttributedString(string: "role", attributes: [
+            .font : UIFont.systemFont(ofSize: 12)
         ])
-        return role
-    }()
+    }
     
     //model
     var character: Characters? {
         didSet {
             nameLabel.text = character?.name
             if let characterRole = character?.role {
-                roleLabel.attributedText = italicize(characterRole)
+                roleLabel.attributedText = characterRole.italicize
             }
             characterImageView.setImage(from: character?.imageUrl)
         }

@@ -21,13 +21,13 @@ class Service {
         static let characters = "/characters"
     }
     
-    private static var currentURL: String {
-        return "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
+    private var currentURL: String {
+         "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
     }
     
-    private static var currentPage: Int = 1
+    private var currentPage: Int = 1
     
-    static func getCharacters(page:Int, handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
+    func getCharacters(page:Int, handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
         currentPage = page
         AF.request(currentURL,
                    method: .get)
@@ -47,7 +47,7 @@ class Service {
             }
     }
     
-    static func getImage(url: String, handler: @escaping (Result<Image,CustomError>) -> () ) {
+    func getImage(url: String, handler: @escaping (Result<Image,CustomError>) -> () ) {
         AF.request(url).responseImage { (response) in
             switch(response.result) {
             case .success(let image) :

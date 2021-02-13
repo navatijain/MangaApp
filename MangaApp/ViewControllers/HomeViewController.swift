@@ -15,6 +15,8 @@ class HomeViewController: BaseViewController {
         static let genericError = "Something went wrong! Sorry!"
     }
     
+    private let viewModel: HomeViewModel
+    
     //MARK: UI
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -39,9 +41,7 @@ class HomeViewController: BaseViewController {
         return contentView
         
     }()
-    
-    private let viewModel = HomeViewModel()
-    
+        
     //MARK: Private Methods
     private func setViewModelHandler(){
         viewModel.stateChangeHandler = {[weak self] state in
@@ -73,13 +73,22 @@ class HomeViewController: BaseViewController {
         errorScreen.anchor(to: self.view)
     }
     
-    //MARK: View Methods
+    //MARK: Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewModelHandler()
         viewModel.getMangaCharacters()
         title = Constants.title
+    }
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
