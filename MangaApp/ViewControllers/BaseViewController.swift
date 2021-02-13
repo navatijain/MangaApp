@@ -13,6 +13,9 @@ class BaseViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Colors.theme
         navigationController?.navigationBar.isOpaque = true
         navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor : Colors.white
+        ]
     }
     
     override func viewDidLoad() {

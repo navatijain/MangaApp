@@ -35,7 +35,7 @@ class HomeViewController: BaseViewController {
         contentView.addSubviewWithAutoLayout(view: label)
         NSLayoutConstraint.activate(
             [label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-           label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)])
+             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)])
         return contentView
         
     }()
@@ -87,7 +87,17 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellName) as? CharacterTableViewCell {
-            cell.character = viewModel.characters[indexPath.row]
+            let currentCharacter = viewModel.characters[indexPath.row]
+            cell.character = currentCharacter
+            cell.onButtonClick = {
+                let webVC = CharacterWebViewController(
+                    title: currentCharacter.name,
+                    urlString: currentCharacter.url
+                )
+                webVC.modalPresentationStyle = .overCurrentContext
+                let navigationController = UINavigationController(rootViewController: webVC)
+                self.present(navigationController, animated: true, completion: nil)
+            }
             return cell
         }
         return UITableViewCell()
@@ -96,7 +106,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.characters.count
     }
-    
 }
 
 //MARK: UIScrollViewDelegate

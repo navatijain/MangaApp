@@ -9,13 +9,38 @@ import UIKit
 
 class CharacterTableViewCell: UITableViewCell {
     
+    private struct Constants {
+        static let buttonText = "View website"
+    }
+    
+    func italicize(_ s : String) -> NSMutableAttributedString  {
+        return NSMutableAttributedString(
+            string: s,
+            attributes: [
+                .font: UIFont.italicSystemFont(ofSize: 12)
+            ]
+        )
+    }
+    
+    private var roleString: NSAttributedString = {
+        let role = NSMutableAttributedString(string: "role", attributes: [
+            .font : UIFont.systemFont(ofSize: 11)
+        ])
+        return role
+    }()
+    
+    //model
     var character: Characters? {
         didSet {
             nameLabel.text = character?.name
-            descriptionLabel.text = character?.role
+            if let characterRole = character?.role {
+                roleLabel.attributedText = italicize(characterRole)
+            }
             characterImageView.setImage(from: character?.imageUrl)
         }
     }
+    
+    var onButtonClick: (() -> ())?
     
     //MARK: UI Elements
     private lazy var nameLabel: UILabel = {
@@ -25,16 +50,36 @@ class CharacterTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var descriptionLabel: UILabel = {
+    private lazy var roleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .purple
         return label
     }()
     
+    private lazy var visitWebsiteButton: UIButton = {
+        let button = CustomButton()
+        button.setTitle(Constants.buttonText, for: .normal)
+        button.addTarget(self, action: #selector(buttonClick), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var spacer: UIView = {
+        let view = UIView()
+        view.backgroundColor = Colors.background
+        return view
+    }()
+    
+    @objc private func buttonClick() {
+        if let character = character {
+            print(character.url)
+            onButtonClick?()
+        }
+    }
+    
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel,descriptionLabel])
-        stackView.spacing = 20
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, roleLabel, spacer, visitWebsiteButton])
+        stackView.spacing = 30
         stackView.axis = .vertical
         stackView.distribution = .fill
         return stackView
@@ -55,9 +100,10 @@ class CharacterTableViewCell: UITableViewCell {
             characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             characterImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
             stackView.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             stackView.topAnchor.constraint(equalTo: characterImageView.topAnchor, constant: 10),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            visitWebsiteButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
