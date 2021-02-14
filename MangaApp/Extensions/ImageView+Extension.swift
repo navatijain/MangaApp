@@ -11,7 +11,6 @@ extension UIImageView {
     
     func setImage(from url: String?){
         guard let url = url else { return}
-        
             Service().getImage(url: url) { (result) in
             DispatchQueue.main.async {
                 switch (result) {
