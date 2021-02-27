@@ -20,11 +20,12 @@ class HomeViewModel {
     //MARK: Private variables
     private var state: State = .notLoaded {
         didSet {
+            increasePageCountIfNeeded()
             stateChangeHandler?(state)
         }
     }
     
-    private var currentPage = 0
+    private var currentPage = 1
     private let service: Service
     
     init(service: Service = Service()) {
@@ -36,19 +37,34 @@ class HomeViewModel {
     var characters: [Characters] = []
     
     func getMangaCharacters(){
-        currentPage += 1
         state = .loading
+        
         service.getCharacters(page: currentPage) { [weak self] (result) in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 switch (result) {
                 case .success(let model):
-                    self?.characters.append(contentsOf: model.characters)
-                    self?.state = self?.currentPage == 1 ? .loaded : .loadedMore
+                    if self.isFirstPage, model.characters.isEmpty {
+                        self.state = .error
+                    }
+                    self.characters.append(contentsOf: model.characters)
+                    self.state = self.isFirstPage ? .loaded : .loadedMore
+                    
                 case .failure(let error):
                     print(error)
-                    self?.state = .error
+                    self.state = .error
                 }
             }
+        }
+    }
+    
+    var isFirstPage: Bool {
+        return currentPage == 1
+    }
+   
+    func increasePageCountIfNeeded() {
+        if state == .loaded || state == .loadedMore {
+            currentPage += 1
         }
     }
     

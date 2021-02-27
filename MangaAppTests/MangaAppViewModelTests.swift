@@ -9,7 +9,7 @@ import XCTest
 @testable import MangaApp
 
 class MangaAppViewModelTests: XCTestCase {
-
+    
     func testStateIsLoadedWhenResponseIsSuccess(){
         let viewModel = HomeViewModel(service: MockServiceSuccess())
         let expectation = XCTestExpectation(description: "State is Loaded")
@@ -26,7 +26,41 @@ class MangaAppViewModelTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 3)
     }
-
+    
+    func testStateIsErrorWhenResponseIsEmpty(){
+        let viewModel = HomeViewModel(service: MockServiceSuccessWithEmptyResponse())
+        let expectation = XCTestExpectation(description: "Expect state change to .error")
+        viewModel.getMangaCharacters()
+        
+        viewModel.stateChangeHandler = {state in
+            switch state {
+            case .error:
+                expectation.fulfill()
+                XCTAssertEqual(viewModel.characters.count, 0, "Count of characters should be zero")
+            default:
+                break
+            }
+        }
+        wait(for: [expectation], timeout: 3)
+    }
+    
+    func testStateIsErrorWhenServiceFails(){
+        let viewModel = HomeViewModel(service: MockServiceFailure())
+        let expectation = XCTestExpectation(description: "Expect state change to .error")
+        viewModel.getMangaCharacters()
+        
+        viewModel.stateChangeHandler = { state in
+            switch state {
+            case .error:
+                expectation.fulfill()
+                XCTAssertEqual(viewModel.characters.count, 0, "Count of characters should be zero")
+            default:
+                break
+            }
+            
+        }
+    }
+    
 }
 
 extension MangaAppViewModelTests {
@@ -36,6 +70,18 @@ extension MangaAppViewModelTests {
             handler: @escaping (Result<CharacterResponseModel, CustomError>) -> ()
         ) {
             handler(.success(mockSuccessJSON))
+        }
+    }
+    
+    class MockServiceSuccessWithEmptyResponse: Service {
+        override func getCharacters(page: Int, handler: @escaping (Result<CharacterResponseModel, CustomError>) -> ()) {
+            handler(.success(mockEmptyCharactersJSON))
+        }
+    }
+    
+    class MockServiceFailure: Service {
+        override func getCharacters(page: Int, handler: @escaping (Result<CharacterResponseModel, CustomError>) -> ()) {
+            handler(.failure(.service))
         }
     }
 }
@@ -68,6 +114,15 @@ extension MangaAppViewModelTests {
                     name: "Griffith",
                     role: "Main"),
             ]
+        )
+    }
+    
+    static var mockEmptyCharactersJSON: CharacterResponseModel {
+        CharacterResponseModel(
+            requestHash: "request:manga:debf410931de1a4b2e810924e910067efe7bac89",
+            requestCached: true,
+            requestCacheExpiry: 76381,
+            characters: []
         )
     }
 }
