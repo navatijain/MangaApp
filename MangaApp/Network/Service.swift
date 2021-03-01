@@ -22,14 +22,32 @@ class Service {
     }
     
     private var currentURL: String {
-         "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
+        "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
     }
     
     private var currentPage: Int = 1
     
+    let sessionManager: Session = {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.requestCachePolicy  = .returnCacheDataElseLoad
+        
+        let responseCacher = ResponseCacher(behavior: .modify({ (_, response) -> CachedURLResponse? in
+            let userInfo = ["date": Date()]
+            return CachedURLResponse(
+                response: response.response,
+                data: response.data,
+                userInfo: userInfo,
+                storagePolicy: .allowed)
+        }))
+        
+        return Session(configuration: configuration,
+                       cachedResponseHandler: responseCacher)
+        
+    }()
+    
     func getCharacters(page:Int, handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
         currentPage = page
-        AF.request(currentURL,
+        sessionManager.request(currentURL,
                    method: .get)
             .responseData { (response) in
                 switch (response.result) {

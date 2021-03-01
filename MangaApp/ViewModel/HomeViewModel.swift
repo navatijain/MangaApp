@@ -12,9 +12,11 @@ class HomeViewModel {
     enum State {
         case loaded
         case loadedMore
+        case cachedResultsAvailable
         case loading
         case notLoaded
         case error
+        case additionalResultsUnavailable
     }
     
     //MARK: Private variables
@@ -48,11 +50,12 @@ class HomeViewModel {
                         self.state = .error
                     }
                     self.characters.append(contentsOf: model.characters)
+                    
                     self.state = self.isFirstPage ? .loaded : .loadedMore
                     
                 case .failure(let error):
                     print(error)
-                    self.state = .error
+                    self.state = self.isFirstPage ? .error : .additionalResultsUnavailable
                 }
             }
         }

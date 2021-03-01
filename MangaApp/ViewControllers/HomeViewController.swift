@@ -61,7 +61,12 @@ class HomeViewController: BaseViewController {
             case .loadedMore:
                 LoadingIndicator.hide()
                 self?.tableView.reloadData()
-                
+            case .cachedResultsAvailable:
+               print("cached results")
+                LoadingIndicator.hide()
+            case .additionalResultsUnavailable:
+                print("additionalResultsUnavailable")
+                LoadingIndicator.hide()
             }
         }
     }
