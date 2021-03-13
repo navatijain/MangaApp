@@ -18,16 +18,20 @@ class Service {
     
     private struct Constants {
         static let baseURL = "https://api.jikan.moe/v3/manga/"
-        static let characters = "/characters"
+    }
+    
+    enum Endpoint {
+        case characters(page: Int)
+        
+        var url: String {
+            switch self {
+            case .characters(let page):
+                return "\(Constants.baseURL)\(page)/characters"
+            }
+        }
     }
     
     //MARK: - Properties
-
-    private var currentURL: String {
-        "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
-    }
-    
-    private var currentPage: Int = 1
     
     let sessionManager: Session = {
         let configuration = URLSessionConfiguration.af.default
@@ -49,11 +53,10 @@ class Service {
     }()
     
     //MARK: - Methods
-
+    
     func getCharacters(page:Int, handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
-        currentPage = page
         sessionManager.request(
-            currentURL,
+            Endpoint.characters(page: page).url,
             method: .get
         )
         .responseData { (response) in

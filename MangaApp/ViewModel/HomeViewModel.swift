@@ -59,7 +59,7 @@ class HomeViewModel {
                     self.state = self.isFirstPage ? .loaded : .loadedMore
                     
                 case .failure(let error):
-                    print(error)
+                    dprint(error)
                     self.state = self.isFirstPage ? .error : .additionalResultsUnavailable
                 }
             }

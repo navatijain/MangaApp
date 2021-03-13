@@ -97,7 +97,7 @@ class CharacterTableViewCell: UITableViewCell {
     
     @objc private func buttonClick() {
         if let character = character {
-            print(character.url)
+            dprint(character.url)
             onButtonClick?()
         }
     }
