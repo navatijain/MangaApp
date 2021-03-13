@@ -9,7 +9,9 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    func setNavBar(){
+    //MARK: - Methods
+
+    func setNavBar() {
         navigationController?.navigationBar.barTintColor = Colors.theme
         navigationController?.navigationBar.isOpaque = true
         navigationController?.navigationBar.barStyle = .default
@@ -18,6 +20,8 @@ class BaseViewController: UIViewController {
         ]
     }
     
+    //MARK: - LifeCycle methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavBar()

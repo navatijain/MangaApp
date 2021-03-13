@@ -9,14 +9,15 @@ import UIKit
 
 class CustomButton: UIButton {
     
-    private func setButton(){
+    //MARK: - Private Methods
+
+    private func setButton() {
         backgroundColor = Colors.theme
         setTitleColor(Colors.white, for: .normal)
         layer.cornerRadius = 20
     }
     
-    //MARK: Init
-    
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setButton()

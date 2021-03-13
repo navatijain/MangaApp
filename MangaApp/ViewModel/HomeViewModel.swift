@@ -19,7 +19,14 @@ class HomeViewModel {
         case additionalResultsUnavailable
     }
     
-    //MARK: Private variables
+    //MARK: - Init
+
+    init(service: Service = Service()) {
+        self.service = service
+    }
+    
+    //MARK: - Properties
+    
     private var state: State = .notLoaded {
         didSet {
             increasePageCountIfNeeded()
@@ -30,15 +37,13 @@ class HomeViewModel {
     private var currentPage = 1
     private let service: Service
     
-    init(service: Service = Service()) {
-        self.service = service
-    }
-    
-    //MARK: Public Variables
     var stateChangeHandler: ((State) -> ())?
     var characters: [Characters] = []
+    var isFirstPage: Bool { currentPage == 1 }
     
-    func getMangaCharacters(){
+    //MARK: - Methods
+
+    func getMangaCharacters() {
         state = .loading
         
         service.getCharacters(page: currentPage) { [weak self] (result) in
@@ -61,14 +66,9 @@ class HomeViewModel {
         }
     }
     
-    var isFirstPage: Bool {
-        return currentPage == 1
-    }
-   
     func increasePageCountIfNeeded() {
         if state == .loaded || state == .loadedMore {
             currentPage += 1
         }
     }
-    
 }

@@ -13,13 +13,14 @@ class CharacterTableViewCell: UITableViewCell {
         static let buttonText = "View website"
     }
     
+    //MARK: - Properties
+
     private var roleString: NSAttributedString {
-        return NSAttributedString(string: "role", attributes: [
+        NSAttributedString(string: "role", attributes: [
             .font : UIFont.systemFont(ofSize: 12)
         ])
     }
     
-    //model
     var character: Characters? {
         didSet {
             nameLabel.text = character?.name
@@ -32,7 +33,8 @@ class CharacterTableViewCell: UITableViewCell {
     
     var onButtonClick: (() -> ())?
     
-    //MARK: UI Elements
+    //MARK: - UI Elements
+    
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -60,13 +62,7 @@ class CharacterTableViewCell: UITableViewCell {
         return view
     }()
     
-    @objc private func buttonClick() {
-        if let character = character {
-            print(character.url)
-            onButtonClick?()
-        }
-    }
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nameLabel, roleLabel, spacer, visitWebsiteButton])
         stackView.spacing = 30
@@ -81,7 +77,9 @@ class CharacterTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    func setConstraints(){
+    //MARK: - Methods
+
+    func setConstraints() {
         contentView.addSubviewWithAutoLayout(views: [characterImageView, stackView])
         NSLayoutConstraint.activate([
             characterImageView.heightAnchor.constraint(equalTo: characterImageView.widthAnchor, multiplier: 1.5),
@@ -97,7 +95,15 @@ class CharacterTableViewCell: UITableViewCell {
         ])
     }
     
+    @objc private func buttonClick() {
+        if let character = character {
+            print(character.url)
+            onButtonClick?()
+        }
+    }
+    
     //MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none

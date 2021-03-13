@@ -17,8 +17,9 @@ class HomeViewController: BaseViewController {
     
     private let viewModel: HomeViewModel
     
-    //MARK: UI
-    lazy var tableView: UITableView = {
+    //MARK: - UI Elements
+
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: Constants.cellName)
         tableView.estimatedRowHeight = 100
@@ -26,7 +27,7 @@ class HomeViewController: BaseViewController {
         return tableView
     }()
     
-    lazy var errorScreen: UIView = {
+    private lazy var errorScreen: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = Colors.background
         let label = UILabel()
@@ -42,7 +43,8 @@ class HomeViewController: BaseViewController {
         
     }()
         
-    //MARK: Private Methods
+    //MARK: - Private Methods
+    
     private func setViewModelHandler(){
         viewModel.stateChangeHandler = {[weak self] state in
             switch(state) {
@@ -62,14 +64,15 @@ class HomeViewController: BaseViewController {
                 LoadingIndicator.hide()
                 self?.tableView.reloadData()
             case .cachedResultsAvailable:
-               print("cached results")
+                dprint("cached results")
                 LoadingIndicator.hide()
             case .additionalResultsUnavailable:
-                print("additionalResultsUnavailable")
+                dprint("additionalResultsUnavailable")
                 LoadingIndicator.hide()
             }
         }
     }
+    
     private func setTableViewConstraints() {
         tableView.anchor(to: view)
     }
@@ -78,7 +81,7 @@ class HomeViewController: BaseViewController {
         errorScreen.anchor(to: self.view)
     }
     
-    //MARK: Methods
+    //MARK: LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +90,8 @@ class HomeViewController: BaseViewController {
         title = Constants.title
     }
     
+    //MARK: - Init
+
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -97,7 +102,8 @@ class HomeViewController: BaseViewController {
     }
 }
 
-//MARK: TableView Delegate
+//MARK: - TableView Delegate
+
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellName) as? CharacterTableViewCell {
@@ -122,7 +128,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: UIScrollViewDelegate
+//MARK: - UIScrollViewDelegate
 
 extension HomeViewController: UIScrollViewDelegate {
     //https://www.tfzx.net/article/347570.html

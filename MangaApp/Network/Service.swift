@@ -21,6 +21,8 @@ class Service {
         static let characters = "/characters"
     }
     
+    //MARK: - Properties
+
     private var currentURL: String {
         "https://api.jikan.moe/v3/manga/\(currentPage)\(Constants.characters)"
     }
@@ -40,37 +42,42 @@ class Service {
                 storagePolicy: .allowed)
         }))
         
-        return Session(configuration: configuration,
-                       cachedResponseHandler: responseCacher)
-        
+        return Session(
+            configuration: configuration,
+            cachedResponseHandler: responseCacher
+        )
     }()
     
+    //MARK: - Methods
+
     func getCharacters(page:Int, handler: @escaping (Result<CharacterResponseModel,CustomError>) -> ()) {
         currentPage = page
-        sessionManager.request(currentURL,
-                   method: .get)
-            .responseData { (response) in
-                switch (response.result) {
-                case .success(let data):
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    if let model = try? decoder.decode(CharacterResponseModel.self, from: data) {
-                        handler(.success(model))
-                    } else {
-                        handler(.failure(.decoding))
-                    }
-                case .failure(_):
-                    handler(.failure(.service))
+        sessionManager.request(
+            currentURL,
+            method: .get
+        )
+        .responseData { (response) in
+            switch (response.result) {
+            case .success(let data):
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                if let model = try? decoder.decode(CharacterResponseModel.self, from: data) {
+                    handler(.success(model))
+                } else {
+                    handler(.failure(.decoding))
                 }
+            case .failure(_):
+                handler(.failure(.service))
             }
+        }
     }
     
     func getImage(url: String, handler: @escaping (Result<Image,CustomError>) -> () ) {
         AF.request(url).responseImage { (response) in
             switch(response.result) {
-            case .success(let image) :
+            case .success(let image):
                 handler(.success(image))
-            case .failure(let error):
+            case .failure(let _):
                 handler(.failure(.service))
             }
         }

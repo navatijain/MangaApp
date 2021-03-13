@@ -9,7 +9,7 @@ import UIKit
 
 extension UIView {
     
-    func enableAutoLayout() -> Self{
+    func enableAutoLayout() -> Self {
         translatesAutoresizingMaskIntoConstraints = false
         return self
     }
@@ -24,7 +24,7 @@ extension UIView {
         }
     }
     
-    func anchor(to view: UIView){
+    func anchor(to view: UIView) {
         view.addSubviewWithAutoLayout(view: self)
         NSLayoutConstraint.activate([
             self.topAnchor.constraint(equalTo: view.topAnchor),

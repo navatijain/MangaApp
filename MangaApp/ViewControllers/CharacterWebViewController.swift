@@ -10,8 +10,12 @@ import WebKit
 
 class CharacterWebViewController: BaseViewController {
     
+    //MARK: - Properties
+    
     var webview: WKWebView!
     let urlString: String
+    
+    //MARK: - LifeCycle methods
     
     override func loadView() {
         webview = WKWebView()
@@ -25,6 +29,8 @@ class CharacterWebViewController: BaseViewController {
         }
     }
     
+    //MARK: - Init
+    
     init(title: String, urlString: String) {
         self.urlString = urlString
         super.init(nibName: nil, bundle: nil)
@@ -34,5 +40,4 @@ class CharacterWebViewController: BaseViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
